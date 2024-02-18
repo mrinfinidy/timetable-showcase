@@ -11,6 +11,9 @@ def times_berlin_hbf(time, date, timetable):
     for i in range(5):
         berlin_hbf_entry = []
         berlin_hbf_entry.append(res["transports"][i]["nearest_trip_time"])
-        berlin_hbf_entry.append(res["transports"][i]["transport_info"]["full_name"])
+        if 'full_name' in res["transports"][i]["transport_info"]:
+            berlin_hbf_entry.append(res["transports"][i]["transport_info"]["full_name"])
+        else:
+            berlin_hbf_entry.append(res["transports"][i]["transport_info"]["line"])
         berlin_hbf_entry.append(res["transports"][i]["stop_title"])
         timetable.append(berlin_hbf_entry)
